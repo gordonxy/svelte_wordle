@@ -58,7 +58,7 @@
     }
 </script>
 
-<svelte:body on:keyup={event => parseKey(event)} />
+<svelte:body on:keydown={event => parseKey(event)} />
 
 <div class="row {isActive ? "active" : ""}">
     {#each inputs as {state, character}}
@@ -67,8 +67,12 @@
 </div>
 
 <style>
+    :root {
+        --wordle-width: min(4rem, 8vw);
+    }
+
     .row {
-        margin: 2px;
+        margin: 2px auto;
     }
 
     .active {
@@ -81,14 +85,14 @@
         vertical-align: middle;
         justify-content: center;
         font-family: 'Clear Sans' sans-serif;
-        font-size: 4rem;
+        font-size: var(--wordle-width);
         font-weight: bold;
         color: rgb(255, 255, 255);
         text-transform: capitalize;
 
         border: 2px solid #5e5e5e;
-        width: 4rem;
-        line-height: 4rem;
+        width: var(--wordle-width);
+        line-height: var(--wordle-width);
 
         margin: 2px;
         padding: 5px;
